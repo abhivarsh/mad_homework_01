@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.reset).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                weight.setFocusable(true);
+                weight.setEnabled(true);
                 gender.setClickable(true);
                 findViewById(R.id.shot).setClickable(true);
                 findViewById(R.id.glass).setClickable(true);
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if((val/10)>=25.0){
-            weight.setFocusable(false);
+            weight.setEnabled(false);
             gender.setClickable(false);
             findViewById(R.id.shot).setClickable(false);
             findViewById(R.id.glass).setClickable(false);

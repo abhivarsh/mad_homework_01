@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:autofillHints="enter @id/input_weight"
+    android:minHeight="182dp"
+    android:tooltipText="enter"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/title_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_weight="1"
+        android:text="@string/title_weight"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/input_weight"
+        android:layout_width="123dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="@string/hint_weight"
+        android:inputType="textPersonName"
+        android:textSize="15sp"
+        android:tooltipText="enter weight"
+        app:layout_constraintStart_toEndOf="@+id/title_weight"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_gender"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_weight="1"
+        android:text="@string/title_gender"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/save_button"
+        app:layout_constraintStart_toEndOf="@+id/input_weight"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.266" />
+
+    <Switch
+        android:id="@+id/gender"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:showText="true"
+        android:textOff="@string/female"
+        android:textOn="@string/male"
+        app:layout_constraintBottom_toTopOf="@+id/save_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toEndOf="@+id/title_gender"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.444" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="381dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/weight_save"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_weight" />
+
+    <LinearLayout
+        android:id="@+id/layout_2"
+        android:layout_width="375dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/save_button">
+
+        <RadioGroup
+            android:id="@+id/alcohol_size"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checkedButton="@+id/shot"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/drink_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="@string/drink_size"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/shot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/shot" />
+
+            <RadioButton
+                android:id="@+id/glass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/glass" />
+
+            <RadioButton
+                android:id="@+id/can"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/can" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_3"
+        android:layout_width="368dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_2">
+
+        <TextView
+            android:id="@+id/alcohol_percen"
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/alcohol_percen"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar_alcohol"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:max="@integer/max_alcohol"
+            android:progress="@integer/progress_alcohol"
+            android:scrollIndicators="right" />
+
+        <TextView
+            android:id="@+id/alcohol_indicator"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_4"
+        android:layout_width="368dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_3">
+
+        <Button
+            android:id="@+id/add_drink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_drink"/>
+
+        <Button
+            android:id="@+id/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/reset" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar_bac"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="368dp"
+        android:layout_height="12dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="16dp"
+        android:foregroundGravity="center_vertical"
+        android:max="@integer/bac_max"
+        android:progress="@integer/progress_bac"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_5" />
+
+    <LinearLayout
+        android:id="@+id/layout_5"
+        android:layout_width="367dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_4">
+
+        <TextView
+            android:id="@+id/bac_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:text="@string/bac_level"
+            android:textAlignment="textEnd"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar_bac" />
+
+        <TextView
+            android:id="@+id/bac_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:textAlignment="viewStart"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toEndOf="@+id/your_status"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar_bac" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_6"
+        android:layout_width="368dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar_bac">
+
+        <TextView
+            android:id="@+id/your_status"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:text="@string/your_status"
+            android:textAlignment="textEnd"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar_bac" />
+
+        <TextView
+            android:id="@+id/status_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="6dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_green_dark"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toEndOf="@+id/your_status"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar_bac" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="1dp"
+            android:layout_height="37dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

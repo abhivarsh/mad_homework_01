@@ -174,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.add_drink).setEnabled(false);
             findViewById(R.id.save_button).setEnabled(false);
 
+            Toast.makeText(this, "No more drinks for you.", Toast.LENGTH_SHORT).show();
+
         }
     }
 

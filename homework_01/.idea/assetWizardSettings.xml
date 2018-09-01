@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="56" />
+                                                <entry key="scalingPercent" value="58" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,7 +33,23 @@
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
                                       <entry key="foregroundImage" value="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/glass_icon.png" />
+                                      <entry key="showSafeZone" value="false" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                            <entry key="launcherLegacy">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="cropped" value="true" />
+                                      <entry key="imageAsset" value="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/glass_icon.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

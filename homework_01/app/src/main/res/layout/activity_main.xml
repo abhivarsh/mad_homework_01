@@ -31,7 +31,7 @@
         android:layout_weight="1"
         android:ems="10"
         android:hint="@string/hint_weight"
-        android:inputType="textPersonName"
+        android:inputType="numberDecimal"
         android:textSize="15sp"
         android:tooltipText="enter weight"
         app:layout_constraintStart_toEndOf="@+id/title_weight"

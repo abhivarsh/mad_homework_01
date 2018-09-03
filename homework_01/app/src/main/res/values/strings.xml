@@ -19,4 +19,7 @@
     <string name="safe_limit">You\'re safe</string>
     <string name="normal_limit">Be careful...</string>
     <string name="over_limit">Over the limit!</string>
+    <string name="hint_enter_weight">Enter the Weight in lb</string>
+    <string name="hint_over_limit">No more drinks for you.</string>
+    <string name="hint_saved">weight and gender have been saved!!</string>
 </resources>

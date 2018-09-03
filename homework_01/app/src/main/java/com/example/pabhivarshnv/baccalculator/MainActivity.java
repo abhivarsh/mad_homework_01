@@ -30,13 +30,12 @@ public class MainActivity extends AppCompatActivity {
     CharSequence genderValue = "F";
     Double weightValue;
     int drinkSize = 1;
-    int alcoholPercentageIndicator = 5;
+    int alcoholPercentageIndicator;
     double calBacValue;
-    double val = 0.0;
+    double val = 0.00;
 
     Double numerator = 0.0;
     Double denominator = 0.0;
-    boolean isRecalculate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +52,13 @@ public class MainActivity extends AppCompatActivity {
         drinksRgp = (RadioGroup) findViewById(R.id.alcohol_size);
         drinkSizeRb = (RadioButton) findViewById(drinksRgp.getCheckedRadioButtonId());
         alcoholPercentage = (SeekBar) findViewById(R.id.seekBar_alcohol);
+        alcoholPercentage.setMin(5);
         bacValue = findViewById(R.id.bac_value);
         status = findViewById(R.id.status_value);
         alcoholIndicator = findViewById(R.id.alcohol_indicator);
         progressBar = findViewById(R.id.progressBar_bac);
         alcoholIndicator.setText("5%");
-        bacValue.setText("0.00");
+        bacValue.setText("0.0");
         status.setText(R.string.safe_limit);
 
         gender.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -87,18 +87,15 @@ public class MainActivity extends AppCompatActivity {
 
                 if(weight.getText().toString().equalsIgnoreCase("")
                         ||Double.parseDouble(weight.getText().toString()) <= 0.0){
-                    Toast.makeText(MainActivity.this, "Please enter weight", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.hint_enter_weight, Toast.LENGTH_SHORT).show();
                     weight.setText("");
                 }else {
                     weightValue = Double.parseDouble(weight.getText().toString());
                     double genderConstant = genderValue.equals("F")?0.55:0.68;
                     Log.d("demo", "weight : "+weightValue+",gender : "+genderValue);
-                    Toast.makeText(MainActivity.this, "weight and gender have been saved!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.hint_saved, Toast.LENGTH_SHORT).show();
                     denominator = weightValue*genderConstant;
-                    if (numerator != 0.0) {
-                        calculateBac();
-                        isRecalculate = true;
-                    }
+                    calculateBac();
 
                 }
             }
@@ -108,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Log.d("demo", "onProgressChanged: "+progress);
-                alcoholPercentageIndicator=progress*5;
-                alcoholIndicator.setText(progress*5+"%");
+                alcoholPercentageIndicator=progress;
+                alcoholIndicator.setText(progress+"%");
             }
 
             @Override
@@ -127,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (setError(this)){
+                    Double newDrink = drinkSize*alcoholPercentageIndicator*6.24;
+                    numerator += newDrink;
                     calculateBac();
                 }
 
@@ -144,11 +143,18 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.add_drink).setEnabled(true);
                 findViewById(R.id.save_button).setEnabled(true);
                 findViewById(R.id.seekBar_alcohol).setEnabled(true);
+                progressBar.setProgress(0);
+                bacValue.setText("0.0");
+                status.setText(R.string.safe_limit);
+                status.setBackgroundColor(getResources().getColor(android.R.color.holo_green_dark));
 
                 weight.setText("");
+                weightValue=0.0;
+                numerator=0.0;
+                denominator=0.0;
                 gender.setChecked(false);
                 drinksRgp.check(R.id.shot);
-                alcoholPercentage.setProgress(1);
+                alcoholPercentage.setProgress(5);
 
             }
         });
@@ -158,11 +164,7 @@ public class MainActivity extends AppCompatActivity {
     private void calculateBac() {
 
         //calBacValue = (drinkSize*(alcoholPercentageIndicator)*6.24/(weightValue*g))/100;
-        Double newDrink = drinkSize*alcoholPercentageIndicator*6.24;
-        if(!isRecalculate) {
-            numerator += newDrink;
-            isRecalculate = false;
-        }
+
         calBacValue = numerator/denominator/100;
         val = (double) Math.round(calBacValue*1000);
         bacValue.setText(Double.toString(val/1000));
@@ -180,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             status.setText(R.string.safe_limit);
-            status.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
+            status.setBackgroundColor(getResources().getColor(android.R.color.holo_green_dark));
         }
 
         if((val/10)>=25.0){
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.add_drink).setEnabled(false);
             findViewById(R.id.save_button).setEnabled(false);
 
-            Toast.makeText(this, "No more drinks for you.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.hint_over_limit, Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -201,13 +203,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean setError(View.OnClickListener view) {
 
         try{
+            Log.d("demo", "setError: "+weightValue);
             if (weightValue.equals("") || weightValue.equals(" ") || weightValue<=0.0){
-                Toast.makeText(this, "Enter the Weight in lb", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.hint_enter_weight, Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
         catch (Exception e){
-            Toast.makeText(this, "Enter the Weight in lb", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.hint_enter_weight, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

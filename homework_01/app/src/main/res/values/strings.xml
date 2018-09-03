@@ -1,3 +1,8 @@
+<!--a. Assignment HW1.
+    b. File Name : strings.xml
+    c. Full name of all students in your group:(GRP -17)
+    1. Naga Vamsi Abhivarsh Peddireddy
+    2. Siva Kumar Reddy Vayyeti-->
 <resources>
     <string name="app_name">BAC Calculator</string>
     <string name="title_weight">Weight (lbs)</string>

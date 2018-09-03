@@ -1,3 +1,9 @@
+/*a. Assignment HW1.
+b. File Name : MainActivity.java
+c. Full name of all students in your group:(GRP-17)
+        1. Naga Vamsi Abhivarsh Peddireddy
+        2. Siva Kumar Reddy Vayyeti*/
+
 package com.example.pabhivarshnv.baccalculator;
 
 import android.support.v7.app.AppCompatActivity;

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--a. Assignment HW1.
+    b. File Name : activity_main.xml
+    c. Full name of all students in your group:(GRP -17)
+    1. Naga Vamsi Abhivarsh Peddireddy
+    2. Siva Kumar Reddy Vayyeti-->
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

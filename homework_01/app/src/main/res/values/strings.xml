@@ -16,4 +16,7 @@
     <string name="reset">Reset</string>
     <string name="bac_level">BAC Level:</string>
     <string name="your_status">Your Status:</string>
+    <string name="safe_limit">You\'re safe</string>
+    <string name="normal_limit">Be careful...</string>
+    <string name="over_limit">Over the limit!</string>
 </resources>

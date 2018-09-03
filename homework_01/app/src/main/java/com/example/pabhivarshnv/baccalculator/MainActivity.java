@@ -29,10 +29,14 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     CharSequence genderValue = "F";
     Double weightValue;
-    int drinkSize=1;
-    int alcoholPercentageIndicator=5;
+    int drinkSize = 1;
+    int alcoholPercentageIndicator = 5;
     double calBacValue;
-    double val=0.0;
+    double val = 0.0;
+
+    Double numerator = 0.0;
+    Double denominator = 0.0;
+    boolean isRecalculate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setIcon(R.mipmap.glass_icon);
-        actionBar.setTitle("  BAC Calculator");
+        actionBar.setTitle(R.string.app_name);
 
         weight = findViewById(R.id.input_weight);
         gender = (Switch) findViewById(R.id.gender);
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar_bac);
         alcoholIndicator.setText("5%");
         bacValue.setText("0.00");
-        status.setText("You're safe");
+        status.setText(R.string.safe_limit);
 
         gender.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -87,9 +91,14 @@ public class MainActivity extends AppCompatActivity {
                     weight.setText("");
                 }else {
                     weightValue = Double.parseDouble(weight.getText().toString());
+                    double genderConstant = genderValue.equals("F")?0.55:0.68;
                     Log.d("demo", "weight : "+weightValue+",gender : "+genderValue);
                     Toast.makeText(MainActivity.this, "weight and gender have been saved!!", Toast.LENGTH_SHORT).show();
-                    calculateBac();
+                    denominator = weightValue*genderConstant;
+                    if (numerator != 0.0) {
+                        calculateBac();
+                        isRecalculate = true;
+                    }
 
                 }
             }
@@ -147,21 +156,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void calculateBac() {
-        double g = genderValue.equals("F")?0.55:0.68;
-        calBacValue = (drinkSize*(alcoholPercentageIndicator)*6.24/(weightValue*g))/100;
-        val += (double) Math.round(calBacValue*1000);
+
+        //calBacValue = (drinkSize*(alcoholPercentageIndicator)*6.24/(weightValue*g))/100;
+        Double newDrink = drinkSize*alcoholPercentageIndicator*6.24;
+        if(!isRecalculate) {
+            numerator += newDrink;
+            isRecalculate = false;
+        }
+        calBacValue = numerator/denominator/100;
+        val = (double) Math.round(calBacValue*1000);
         bacValue.setText(Double.toString(val/1000));
         Log.d("demo", "onClick: "+drinkSize+" : "+alcoholPercentageIndicator+" : "+
-                weightValue+" : "+g+" : "+val+" : "+calBacValue);
+                weightValue+" : "+numerator+" : "+val+" : "+calBacValue);
         progressBar.setProgress((int) Math.round(val/10));
 
         if(val/1000>0.08 && val/1000<0.20){
-            status.setText("Be careful...");
+            status.setText(R.string.normal_limit);
             status.setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
         }
         else if(val/1000>=0.20){
-            status.setText("Over the limit!");
+            status.setText(R.string.over_limit);
             status.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+        }
+        else{
+            status.setText(R.string.safe_limit);
+            status.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
         }
 
         if((val/10)>=25.0){
